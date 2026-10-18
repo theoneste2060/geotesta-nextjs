@@ -1,0 +1,144 @@
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+const starts = (path, ...prefixes) => prefixes.some((p) => path === p || path.startsWith(p + '-'));
+
+export default function Header() {
+  const path = usePathname() || '/';
+  const [navOpen, setNavOpen] = useState(false);
+  const [subOpen, setSubOpen] = useState(false);
+  const nav = useRef(null);
+  const btn = useRef(null);
+  const sub = useRef(null);
+  const subBtn = useRef(null);
+
+  const current = {
+    services: starts(path, '/services', '/service'),
+    lab: starts(path, '/testing-lab', '/test'),
+    projects: starts(path, '/projects', '/project'),
+    insights: ['/insights', '/article', '/faq'].includes(path),
+    about: path === '/about',
+    team: path === '/team',
+  };
+  const cur = (k) => (current[k] ? 'page' : undefined);
+
+  const closeNav = useCallback((refocus) => {
+    setNavOpen(false);
+    if (refocus) btn.current?.focus();
+  }, []);
+
+  // Close menus after any navigation
+  useEffect(() => {
+    setNavOpen(false);
+    setSubOpen(false);
+  }, [path]);
+
+  // Page scroll lock + focus the first link when the drawer opens
+  useEffect(() => {
+    document.documentElement.classList.toggle('nav-open', navOpen);
+    if (navOpen) nav.current?.querySelector('a')?.focus();
+    return () => document.documentElement.classList.remove('nav-open');
+  }, [navOpen]);
+
+  // Escape and focus trap while the mobile drawer is open
+  useEffect(() => {
+    if (!navOpen) return undefined;
+    const onKey = (e) => {
+      if (e.key === 'Escape') { closeNav(true); return; }
+      if (e.key !== 'Tab') return;
+      const f = [btn.current, ...nav.current.querySelectorAll('a,button')].filter((x) => x && x.offsetParent !== null);
+      const i = f.indexOf(document.activeElement);
+      if (e.shiftKey && i <= 0) { f[f.length - 1].focus(); e.preventDefault(); }
+      else if (!e.shiftKey && i === f.length - 1) { f[0].focus(); e.preventDefault(); }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [navOpen, closeNav]);
+
+  // Drawer closes when the layout switches back to desktop
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 52.01rem)');
+    const onChange = (m) => { if (m.matches) setNavOpen(false); };
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+
+  // About submenu: close on outside click
+  useEffect(() => {
+    if (!subOpen) return undefined;
+    const onDoc = (e) => { if (sub.current && !sub.current.contains(e.target)) setSubOpen(false); };
+    document.addEventListener('click', onDoc);
+    return () => document.removeEventListener('click', onDoc);
+  }, [subOpen]);
+
+  return (
+    <header className="site-header">
+      <div className="wrap bar">
+        <Link className="logo" href="/" aria-label="GeoTesta home">
+          <img src="/assets/logo-primary.png" alt="" width="152" height="46" />
+        </Link>
+        <nav
+          id="site-nav"
+          ref={nav}
+          className={'site-nav' + (navOpen ? ' open' : '')}
+          aria-label="Main"
+          onClick={(e) => { if (e.target.closest('a')) setNavOpen(false); }}
+        >
+          <ul>
+            <li><Link href="/services" aria-current={cur('services')}>Services</Link></li>
+            <li><Link href="/testing-lab" aria-current={cur('lab')}>Lab</Link></li>
+            <li><Link href="/projects" aria-current={cur('projects')}>Projects</Link></li>
+            <li><Link href="/insights" aria-current={cur('insights')}>Insights</Link></li>
+            <li
+              ref={sub}
+              className={'has-sub' + (subOpen ? ' open' : '')}
+              onKeyDown={(e) => {
+                if (e.key === 'Escape' && subOpen) { setSubOpen(false); subBtn.current?.focus(); }
+              }}
+            >
+              <Link
+                href="/about"
+                aria-current={cur('about')}
+                className={current.team ? 'parent-current' : undefined}
+              >
+                About
+              </Link>
+              <button
+                ref={subBtn}
+                className="sub-toggle"
+                type="button"
+                aria-expanded={subOpen ? 'true' : 'false'}
+                aria-controls="about-sub"
+                aria-label="About submenu"
+                onClick={() => setSubOpen((o) => !o)}
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                  <path d="m5 9 7 7 7-7" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <ul className="sub" id="about-sub">
+                <li><Link href="/about#company-details">Company details</Link></li>
+                <li><Link href="/about#quality">Quality and impartiality</Link></li>
+                <li><Link href="/team" aria-current={cur('team')}>Team</Link></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <Link className="btn btn-sm" href="/contact">Request a quote</Link>
+        <button
+          ref={btn}
+          className="menu-btn"
+          type="button"
+          aria-expanded={navOpen ? 'true' : 'false'}
+          aria-controls="site-nav"
+          onClick={() => (navOpen ? closeNav(true) : setNavOpen(true))}
+        >
+          {navOpen ? 'Close' : 'Menu'}
+        </button>
+      </div>
+    </header>
+  );
+}
