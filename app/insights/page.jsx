@@ -81,7 +81,7 @@ export default function Page() {
                 </span>
               </p>
               <Link href="/article" aria-hidden="true" className="post-more" tabIndex="-1">
-                Read the note →
+                Read the note
               </Link>
             </li>
             <li data-cat="technical">

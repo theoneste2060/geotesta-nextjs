@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Icon from '@/components/Icon';
 import NewsForm from '@/components/NewsForm';
 
 export default function Footer() {
@@ -75,20 +76,35 @@ export default function Footer() {
               <span>
                 GeoTesta LTD
               </span>
-              <span>
-                Gihara, Runda Sector, Kamonyi District, Southern Province, Rwanda
+              <span className="with-icon">
+                <Icon name="pin" />
+                <span>
+                  Gihara, Runda Sector, Kamonyi District, Southern Province, Rwanda
+                </span>
               </span>
-              <span>
-                +250 788 354 909
+              <span className="with-icon">
+                <Icon name="phone" />
+                <span>
+                  +250 788 354 909
+                </span>
               </span>
-              <span>
-                +250 785 468 208
+              <span className="with-icon">
+                <Icon name="phone" />
+                <span>
+                  +250 785 468 208
+                </span>
               </span>
-              <span>
-                info@geotesta.rw
+              <span className="with-icon">
+                <Icon name="mail" />
+                <span>
+                  info@geotesta.rw
+                </span>
               </span>
-              <span>
-                Mon to Fri 8:00 to 17:00, Sat 9:00 to 13:00
+              <span className="with-icon">
+                <Icon name="clock" />
+                <span>
+                  Mon to Fri 8:00 to 17:00, Sat 9:00 to 13:00
+                </span>
               </span>
             </address>
             <p className="follow">

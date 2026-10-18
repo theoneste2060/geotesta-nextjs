@@ -34,6 +34,6 @@ Needs Node 20.9 or newer.
 
 - Quote forms still hand off to WhatsApp (no backend). Replace the submit handler in
   `components/Behaviors.jsx` (search `quote-form`) when a form service is chosen.
-- Fonts (Inter, Manrope) load from Google Fonts in `app/layout.jsx`.
+- Fonts (Montserrat; Campton for headings once its files are added) load from Google Fonts in `app/layout.jsx`.
 - Yellow "open item" notes mark content still to be confirmed. Use the button at the
   bottom-left of the page to show them.

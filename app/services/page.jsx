@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Icon from '@/components/Icon';
 
 export const metadata = {
   title: { absolute: "Services | GeoTesta" },
@@ -61,129 +62,89 @@ export default function Page() {
           <ul className="svc-grid">
             <li>
               <Link href="/service-site-investigation" className="svc-card">
-                <span className="svc-n">
-                  01
-                </span>
+                <Icon name="layers" />
                 <b>
                   Site investigation
                 </b>
                 <span>
                   Desk study, trial pits, boreholes, in-situ testing, sampling and geotechnical reports.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/testing-lab" className="svc-card">
-                <span className="svc-n">
-                  02
-                </span>
+                <Icon name="flask" />
                 <b>
                   Laboratory testing
                 </b>
                 <span>
                   Classification, compaction, CBR, permeability, concrete and specialist tests for the methods in our approved scope.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/service-foundation-concrete" className="svc-card">
-                <span className="svc-n">
-                  03
-                </span>
+                <Icon name="blocks" />
                 <b>
                   Foundation and concrete testing
                 </b>
                 <span>
                   Foundation checks, concrete mix design and quality assurance records.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/service-slope-retaining" className="svc-card">
-                <span className="svc-n">
-                  04
-                </span>
+                <Icon name="mountain" />
                 <b>
                   Slope stability and retaining walls
                 </b>
                 <span>
                   Slope assessment, retaining wall design, drainage and erosion control.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/service-pavement-design" className="svc-card">
-                <span className="svc-n">
-                  05
-                </span>
+                <Icon name="road" />
                 <b>
                   Pavement design
                 </b>
                 <span>
                   Performance studies, distress investigation and maintenance planning.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/service-structural-audit" className="svc-card">
-                <span className="svc-n">
-                  06
-                </span>
+                <Icon name="clipboard" />
                 <b>
                   Structural audit
                 </b>
                 <span>
                   Non-destructive and destructive testing, and the condition of an existing building.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/service-mining-geotechnics" className="svc-card">
-                <span className="svc-n">
-                  07
-                </span>
+                <Icon name="gem" />
                 <b>
                   Mining geotechnics
                 </b>
                 <span>
                   Pit slope stability and underground rock mechanics.
                 </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
-                </span>
               </Link>
             </li>
             <li>
               <Link href="/service-eia" className="svc-card">
-                <span className="svc-n">
-                  08
-                </span>
+                <Icon name="leaf" />
                 <b>
                   Environmental impact assessment
                 </b>
                 <span>
                   EIA test reports, and environmental work run together with site investigation.
-                </span>
-                <span className="svc-go" aria-hidden="true">
-                  →
                 </span>
               </Link>
             </li>
@@ -198,6 +159,7 @@ export default function Page() {
           </h2>
           <ol className="flow">
             <li>
+              <Icon name="target" />
               <b>
                 Define
               </b>
@@ -206,6 +168,7 @@ export default function Page() {
               </span>
             </li>
             <li>
+              <Icon name="search" />
               <b>
                 Investigate
               </b>
@@ -214,6 +177,7 @@ export default function Page() {
               </span>
             </li>
             <li>
+              <Icon name="flask" />
               <b>
                 Test
               </b>
@@ -222,6 +186,7 @@ export default function Page() {
               </span>
             </li>
             <li>
+              <Icon name="chart" />
               <b>
                 Interpret
               </b>
@@ -230,6 +195,7 @@ export default function Page() {
               </span>
             </li>
             <li>
+              <Icon name="file" />
               <b>
                 Report
               </b>
@@ -238,6 +204,7 @@ export default function Page() {
               </span>
             </li>
             <li>
+              <Icon name="users" />
               <b>
                 Support
               </b>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Icon from '@/components/Icon';
 
 export const metadata = {
   title: { absolute: "Testing Lab | GeoTesta" },
@@ -132,6 +133,7 @@ export default function Page() {
             <dl className="facts">
               <div>
                 <dt>
+                  <Icon name="shield" />
                   Designation
                 </dt>
                 <dd>
@@ -156,6 +158,7 @@ export default function Page() {
               </div>
               <div>
                 <dt>
+                  <Icon name="file" />
                   Certificate no.
                 </dt>
                 <dd>
@@ -166,6 +169,7 @@ export default function Page() {
               </div>
               <div>
                 <dt>
+                  <Icon name="calendar" />
                   Valid
                 </dt>
                 <dd>

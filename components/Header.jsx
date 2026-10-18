@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Icon from './Icon';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const starts = (path, ...prefixes) => prefixes.some((p) => path === p || path.startsWith(p + '-'));
@@ -16,6 +17,7 @@ export default function Header() {
   const subBtn = useRef(null);
 
   const current = {
+    home: path === '/',
     services: starts(path, '/services', '/service'),
     lab: starts(path, '/testing-lab', '/test'),
     projects: starts(path, '/projects', '/project'),
@@ -88,10 +90,11 @@ export default function Header() {
           onClick={(e) => { if (e.target.closest('a')) setNavOpen(false); }}
         >
           <ul>
-            <li><Link href="/services" aria-current={cur('services')}>Services</Link></li>
-            <li><Link href="/testing-lab" aria-current={cur('lab')}>Lab</Link></li>
-            <li><Link href="/projects" aria-current={cur('projects')}>Projects</Link></li>
-            <li><Link href="/insights" aria-current={cur('insights')}>Insights</Link></li>
+            <li><Link href="/" aria-current={cur('home')}><Icon name="home" />Home</Link></li>
+            <li><Link href="/services" aria-current={cur('services')}><Icon name="layers" />Services</Link></li>
+            <li><Link href="/testing-lab" aria-current={cur('lab')}><Icon name="flask" />Lab</Link></li>
+            <li><Link href="/projects" aria-current={cur('projects')}><Icon name="briefcase" />Projects</Link></li>
+            <li><Link href="/insights" aria-current={cur('insights')}><Icon name="book" />Insights</Link></li>
             <li
               ref={sub}
               className={'has-sub' + (subOpen ? ' open' : '')}
@@ -104,6 +107,7 @@ export default function Header() {
                 aria-current={cur('about')}
                 className={current.team ? 'parent-current' : undefined}
               >
+                <Icon name="info" />
                 About
               </Link>
               <button
@@ -120,14 +124,13 @@ export default function Header() {
                 </svg>
               </button>
               <ul className="sub" id="about-sub">
-                <li><Link href="/about#company-details">Company details</Link></li>
-                <li><Link href="/about#quality">Quality and impartiality</Link></li>
-                <li><Link href="/team" aria-current={cur('team')}>Team</Link></li>
+                <li><Link href="/about#company-details"><Icon name="file" />Company details</Link></li>
+                <li><Link href="/about#quality"><Icon name="shield" />Quality and impartiality</Link></li>
+                <li><Link href="/team" aria-current={cur('team')}><Icon name="users" />Team</Link></li>
               </ul>
             </li>
           </ul>
         </nav>
-        <Link className="btn btn-sm" href="/contact">Request a quote</Link>
         <button
           ref={btn}
           className="menu-btn"
@@ -136,7 +139,8 @@ export default function Header() {
           aria-controls="site-nav"
           onClick={() => (navOpen ? closeNav(true) : setNavOpen(true))}
         >
-          {navOpen ? 'Close' : 'Menu'}
+          <span className="sr-only">{navOpen ? 'Close menu' : 'Open menu'}</span>
+          <span className="bars" aria-hidden="true"><i /><i /><i /></span>
         </button>
       </div>
     </header>

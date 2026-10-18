@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Icon from '@/components/Icon';
 
 export const metadata = {
   title: { absolute: "Contact | GeoTesta" },
@@ -183,6 +184,7 @@ export default function Page() {
               <dl>
                 <div>
                   <dt>
+                    <Icon name="phone" />
                     Phone
                   </dt>
                   <dd className="mono">
@@ -198,6 +200,7 @@ export default function Page() {
                 </div>
                 <div>
                   <dt>
+                    <Icon name="chat" />
                     WhatsApp
                   </dt>
                   <dd>
@@ -208,6 +211,7 @@ export default function Page() {
                 </div>
                 <div>
                   <dt>
+                    <Icon name="mail" />
                     Email
                   </dt>
                   <dd className="mono">
@@ -218,6 +222,7 @@ export default function Page() {
                 </div>
                 <div>
                   <dt>
+                    <Icon name="pin" />
                     Address
                   </dt>
                   <dd>
@@ -226,6 +231,7 @@ export default function Page() {
                 </div>
                 <div>
                   <dt>
+                    <Icon name="clock" />
                     Hours
                   </dt>
                   <dd>
