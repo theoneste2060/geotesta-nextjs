@@ -1574,18 +1574,18 @@ export default function Page() {
               </form>
               <div className="done" role="status" tabIndex="-1" hidden>
                 <h3>
-                  Your request is ready to send
+                  Thank you, your request has been sent
                 </h3>
                 <p>
-                  It goes to GeoTesta on WhatsApp, +250 788 354 909. Nothing is sent until you press Send in WhatsApp.
+                  We will reply to the phone number or email you gave. You can also message us on WhatsApp, +250 788 354 909.
                 </p>
                 <pre className="quote-msg"></pre>
                 <div className="actions">
                   <a href="https://wa.me/250788354909" className="btn quote-wa" target="_blank" rel="noopener">
-                    Open WhatsApp to send
+                    Message us on WhatsApp too
                   </a>
                   <button className="btn btn-quiet quote-edit" type="button">
-                    Edit request
+                    Send another request
                   </button>
                 </div>
               </div>

@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { FORMSPREE, sendToFormspree } from '@/lib/forms';
 
 /* Page behaviours that enhance the server-rendered markup. They are bound after
    each navigation and fully removed on cleanup (AbortController), so they are
@@ -153,14 +154,21 @@ function init(signal) {
     if (d.readyState === 'complete') eager(); else on(window, 'load', eager);
   }
 
-  /* Quote forms: build a WhatsApp message for now */
+  /* Quote and contact forms: send to Formspree, then offer WhatsApp as a second route */
   $$('form.quote-form').forEach((form) => {
     const done = form.parentNode.querySelector('.done');
     const els = $$('[data-label]', form);
-    on(form, 'submit', (e) => {
+    const full = !!$('[data-label="Deadline"]', form);
+    const endpoint = full ? FORMSPREE.contact : FORMSPREE.quote;
+    const submit = $('button[type="submit"]', form);
+    const submitText = submit ? submit.textContent : '';
+    let busy = false;
+    on(form, 'submit', async (e) => {
       e.preventDefault();
+      if (busy) return;
       let first = null;
       const lines = ['Quote request from the GeoTesta website'];
+      const data = { _subject: (full ? 'GeoTesta website: contact request' : 'GeoTesta website: quote request') + ' (' + location.pathname + ')', page: location.pathname };
       els.forEach((el) => {
         const err = d.getElementById(el.id + '-err'), v = (el.value || '').trim();
         if (!v) {
@@ -172,12 +180,45 @@ function init(signal) {
           el.removeAttribute('aria-invalid');
           if (err) err.textContent = '';
           lines.push(el.getAttribute('data-label') + ': ' + v);
+          data[el.getAttribute('data-label')] = v;
+          if (el.name === 'contact') { if (v.indexOf('@') > 0) data.email = v; }
         }
       });
       if (first) { first.focus(); return; }
       const text = lines.join('\n');
+      const status = $('.form-status', form) || (() => {
+        const p = d.createElement('p');
+        p.className = 'error form-status';
+        p.setAttribute('role', 'alert');
+        form.appendChild(p);
+        return p;
+      })();
+      status.textContent = '';
+      busy = true;
+      form.setAttribute('aria-busy', 'true');
+      if (submit) { submit.disabled = true; submit.textContent = 'Sending...'; }
+      const ok = await sendToFormspree(endpoint, data);
+      busy = false;
+      form.removeAttribute('aria-busy');
+      if (submit) { submit.disabled = false; submit.textContent = submitText; }
+      const wa = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text);
+      if (!ok) {
+        status.innerHTML = '';
+        status.append('Your request could not be sent. Please try again, or send it on ');
+        const a = d.createElement('a');
+        a.href = wa; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'WhatsApp';
+        status.append(a, '.');
+        return;
+      }
+      $('h3', done).textContent = 'Thank you, your request has been sent';
+      const note = $('p', done);
+      if (note) note.textContent = 'We will reply to the phone number or email you gave. You can also message us on WhatsApp, +250 788 354 909.';
       $('.quote-msg', done).textContent = text;
-      $('.quote-wa', done).href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(text);
+      const link = $('.quote-wa', done);
+      link.href = wa; link.textContent = 'Message us on WhatsApp too';
+      const again = $('.quote-edit', done);
+      if (again) again.textContent = 'Send another request';
+      form.reset();
       form.hidden = true; done.hidden = false; done.focus();
     });
     on($('.quote-edit', done), 'click', () => { done.hidden = true; form.hidden = false; els[0].focus(); });

@@ -1,15 +1,16 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { FORMSPREE, sendToFormspree } from '@/lib/forms';
 
-/* Newsletter signup. Not connected to a mailing service yet: it validates the
-   address and says so. Replace onSubmit with a call to your provider. */
+/* Newsletter signup. Sends the address to Formspree (see lib/forms.js). */
 export default function NewsForm({ id }) {
   const input = useRef(null);
   const [message, setMessage] = useState('');
   const [invalid, setInvalid] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault();
     const v = input.current.value.trim();
     if (!v || v.indexOf('@') < 1) {
@@ -19,7 +20,21 @@ export default function NewsForm({ id }) {
       return;
     }
     setInvalid(false);
-    setMessage('Prototype only: this signup is not connected yet, so nothing was saved.');
+    setSending(true);
+    setMessage('');
+    const ok = await sendToFormspree(FORMSPREE.newsletter, {
+      email: v,
+      _subject: 'GeoTesta website: newsletter signup',
+      page: window.location.pathname,
+    });
+    setSending(false);
+    if (ok) {
+      input.current.value = '';
+      setMessage('Thank you. You are subscribed.');
+    } else {
+      setInvalid(true);
+      setMessage('Could not subscribe just now. Please try again.');
+    }
   }
 
   return (
@@ -36,7 +51,7 @@ export default function NewsForm({ id }) {
         <p className="error" id={`${id}-status`} role="status">{message}</p>
       </div>
       <div>
-        <button className="btn btn-quiet" type="submit">Subscribe</button>
+        <button className="btn btn-quiet" type="submit" disabled={sending}>{sending ? 'Sending...' : 'Subscribe'}</button>
       </div>
     </form>
   );

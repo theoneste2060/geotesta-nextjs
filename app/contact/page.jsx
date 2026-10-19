@@ -153,26 +153,23 @@ export default function Page() {
                   </button>
                 </div>
                 <p className="fine">
-                  {"For now, your request is prepared as a WhatsApp message to GeoTesta on +250 788 354 909. "}
-                  <span className="tbc">
-                    [Final receiving address to be confirmed]
-                  </span>
+                  Your request is sent to the GeoTesta team by email. We reply to the phone number or email you give.
                 </p>
               </form>
               <div className="done" hidden role="status" tabIndex="-1">
                 <h3>
-                  Your request is ready to send
+                  Thank you, your request has been sent
                 </h3>
                 <p>
-                  It goes to GeoTesta on WhatsApp, +250 788 354 909. Nothing is sent until you press Send in WhatsApp.
+                  We will reply to the phone number or email you gave. You can also message us on WhatsApp, +250 788 354 909.
                 </p>
                 <pre className="quote-msg"></pre>
                 <div className="actions">
                   <a href="https://wa.me/250788354909" className="btn quote-wa" rel="noopener" target="_blank">
-                    Open WhatsApp to send
+                    Message us on WhatsApp too
                   </a>
                   <button className="btn btn-quiet quote-edit" type="button">
-                    Edit request
+                    Send another request
                   </button>
                 </div>
               </div>
@@ -285,7 +282,7 @@ export default function Page() {
             </li>
           </ol>
           <p className="proto-only">
-            Open item: The quote form now also asks for tests needed, number of samples and a deadline, as the sitemap suggests, so the team can quote without a follow-up call. It still ends in a WhatsApp message until a receiving address and form service are chosen.
+            Open item: The quote form now also asks for tests needed, number of samples and a deadline, as the sitemap suggests, so the team can quote without a follow-up call. It is sent through Formspree. Confirm which email address receives the messages in the Formspree dashboard.
           </p>
         </section>
         <section className="block" id="map">
