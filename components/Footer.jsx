@@ -117,6 +117,13 @@ export default function Footer() {
                 [Social links to be supplied]
               </span>
             </p>
+            <figure className="foot-qr">
+              <img src="/assets/qr-geotesta.svg" width="104" height="104" alt="QR code that opens the GeoTesta website, www.geotesta.rw" loading="lazy" />
+              <figcaption>
+                <b>Scan to open our website</b>
+                <span>www.geotesta.rw</span>
+              </figcaption>
+            </figure>
           </div>
           <div>
             <h3>

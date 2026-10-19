@@ -1355,3 +1355,14 @@ html[data-scrolled] .site-header{box-shadow:0 6px 22px rgba(10,42,67,.12)}
 .slider-toggle:hover{background:#fff;color:var(--navy)}
 .slider-toggle svg{width:15px;height:15px}
 .slider-toggle:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+/* Footer QR code and newsletter note */
+.foot-qr{display:flex;align-items:center;gap:1rem;margin:1.5rem 0 0;padding:.75rem;max-width:20rem;background:#fff;color:var(--navy);border-radius:6px;border-top:4px solid var(--copper)}
+.foot-qr img{display:block;flex:none;width:104px;height:104px}
+.foot-qr figcaption{display:grid;gap:.2rem;font-size:.82rem;line-height:1.4}
+.foot-qr b{font-weight:700;color:var(--navy)}
+.foot-qr span{color:var(--muted);font-weight:500}
+.news-note{margin:0 0 .85rem;font-size:.9rem;line-height:1.55;color:rgba(255,255,255,.88);max-width:30ch}
+.news-form .news-note{color:inherit}
+.site-footer .news-note{color:rgba(255,255,255,.88)}
+main .news-note{color:var(--muted);max-width:44ch}

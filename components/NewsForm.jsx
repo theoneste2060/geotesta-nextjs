@@ -39,12 +39,16 @@ export default function NewsForm({ id }) {
 
   return (
     <form className="news-form" noValidate onSubmit={onSubmit}>
+      <p className="news-note" id={`${id}-note`}>
+        Get new Insights articles, project updates and company news from GeoTesta by email.
+      </p>
       <div className="field">
         <label htmlFor={`${id}-email`}>Email address</label>
         <input
           id={`${id}-email`}
           ref={input}
           type="email"
+          aria-describedby={`${id}-note ${id}-status`}
           autoComplete="email"
           aria-invalid={invalid ? 'true' : undefined}
         />
