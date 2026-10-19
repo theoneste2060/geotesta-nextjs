@@ -407,6 +407,14 @@ export default function Page() {
                 </dd>
               </div>
             </dl>
+            <div className="profile-card">
+              <h3>
+                Company profile
+              </h3>
+              <a className="btn" href="/assets/geotesta-company-profile.pdf" download="GeoTesta-Company-Profile.pdf">
+                Download
+              </a>
+            </div>
             <p className="more">
               <Link href="/about">
                 About GeoTesta

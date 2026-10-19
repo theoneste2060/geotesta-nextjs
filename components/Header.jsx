@@ -77,6 +77,15 @@ export default function Header() {
   }, [subOpen]);
 
   return (
+    <>
+    <div className="info-bar">
+      <div className="wrap info-bar-in">
+        <p className="ib-item ib-addr"><Icon name="pin" /><span>Gihara, Runda Sector, Kamonyi District, Rwanda</span></p>
+        <p className="ib-item ib-hours"><Icon name="clock" /><span>Mon to Fri 8:00 to 17:00, Sat 9:00 to 13:00</span></p>
+        <p className="ib-item ib-phone"><Icon name="phone" /><span><a href="tel:+250788354909">+250 788 354 909</a><span className="ib-sep"> / </span><a className="ib-phone2" href="tel:+250785468208">+250 785 468 208</a></span></p>
+        <p className="ib-item ib-mail"><Icon name="mail" /><span><a href="mailto:info@geotesta.rw">info@geotesta.rw</a></span></p>
+      </div>
+    </div>
     <header className="site-header">
       <div className="wrap bar">
         <Link className="logo" href="/" aria-label="GeoTesta home">
@@ -144,5 +153,6 @@ export default function Header() {
         </button>
       </div>
     </header>
+    </>
   );
 }

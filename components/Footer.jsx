@@ -178,6 +178,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <a href="/assets/geotesta-company-profile.pdf" download="GeoTesta-Company-Profile.pdf">
+                  Company profile (PDF)
+                </a>
+              </li>
+              <li>
                 <a href="/assets/geotesta-capability-statement.pdf" target="_blank" rel="noopener">
                   Capability statement (PDF)
                 </a>
