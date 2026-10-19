@@ -1126,3 +1126,176 @@ dt .icon{width:1.15rem;height:1.15rem;margin-right:.5rem;vertical-align:-.28em;c
 .proto-toggle{z-index:59}
 @media print{.wa-widget{display:none}}
 @media (prefers-reduced-motion:reduce){.wa-fab,.wa-panel{transition:none;animation:none}}
+
+/* ===== Scripted assistant (below the WhatsApp button) ===== */
+.bot-fab{background:var(--navy);width:3.6rem;height:3.6rem}
+.bot-fab .icon{width:1.7rem;height:1.7rem}
+.bot-head .bot-avatar{background:var(--copper);color:#fff}
+.bot-panel{display:flex;flex-direction:column;max-height:min(34rem,calc(100dvh - 11rem))}
+.bot-log{flex:1;min-height:6rem;overflow-y:auto;padding:1rem;background:var(--sky);display:grid;gap:.6rem;align-content:start}
+.bot-msg{max-width:92%;font-size:.9rem;line-height:1.5}
+.bot-msg p{margin:0 0 .45rem}.bot-msg p:last-child{margin:0}
+.bot-a{background:#fff;color:var(--navy);padding:.65rem .85rem;border-radius:2px 12px 12px 12px;box-shadow:0 1px 2px rgba(10,42,67,.08);justify-self:start}
+.bot-q{background:var(--navy);color:#fff;padding:.6rem .85rem;border-radius:12px 12px 2px 12px;justify-self:end;margin:.2rem 0 .6rem auto}
+.bot-log>div>.bot-a{margin-top:0}
+.bot-qs{padding:.75rem 1rem 1rem;border-top:1px solid var(--line);background:#fff;overflow-y:auto;max-height:11.5rem}
+.bot-qs-h{margin:0 0 .5rem;font-size:.72rem;font-weight:700;letter-spacing:.04em;color:var(--muted);text-transform:none}
+.bot-qs ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+.bot-qs li button{min-height:36px;padding:.35rem .75rem;border:1.5px solid var(--navy);border-radius:999px;background:#fff;color:var(--navy);font:600 .78rem var(--font-body);cursor:pointer;text-align:left}
+.bot-qs li button:hover{background:var(--navy);color:#fff}
+.bot-qs button:focus-visible{outline:3px solid var(--copper);outline-offset:2px}
+.bot-reset{margin-top:.6rem;background:none;border:0;padding:.2rem 0;color:var(--copper-ink);font:600 .78rem var(--font-body);cursor:pointer}
+.bot-link{display:inline-block;margin-top:.45rem;font-weight:700;color:var(--copper-ink)}
+.bot-qs:empty{display:none}
+
+/* =====================================================================
+   Builderz-inspired section design and motion layer
+   Layout and animation patterns only. GeoTesta colours, fonts and content
+   are unchanged. Everything animated is guarded for reduced motion.
+   ===================================================================== */
+:root{--copper-deep:#B05A25;--ease-out:cubic-bezier(.2,.7,.2,1);--lift:0 18px 38px rgba(10,42,67,.16)}
+
+/* Sticky header gains depth once the page is scrolled */
+.site-header{transition:box-shadow .3s ease,background-color .3s ease}
+html[data-scrolled] .site-header{box-shadow:0 6px 22px rgba(10,42,67,.12)}
+
+/* Section titles: small accent label flanked by short lines */
+.eyebrow{display:inline-flex;align-items:center;gap:.7rem}
+.eyebrow::before,.eyebrow::after{content:"";width:1.75rem;height:2px;background:var(--copper);flex:none}
+.hero .eyebrow::after,.page-hero .eyebrow::after{display:none}
+
+/* Buttons: lift and soft shadow */
+.btn{transition:background .2s,color .2s,transform .25s var(--ease-out),box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(10,42,67,.22)}
+.btn:active{transform:translateY(-1px)}
+
+/* Hero: staged entrance and slow zoom on the active photo */
+@keyframes gtUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes gtFade{from{opacity:0}to{opacity:1}}
+.hero-copy>*,.hero-ctrl{animation:gtUp .9s var(--ease-out) both}
+.hero-copy>h1{animation-delay:.1s}
+.hero-copy>.lead{animation-delay:.28s}
+.hero-copy>.actions{animation-delay:.46s}
+.hero-ctrl{animation-name:gtFade;animation-delay:.7s}
+.hero .slide img{transform:scale(1.09);transition:transform 9s linear}
+.hero .slide[aria-hidden="false"] img{transform:scale(1)}
+.hero-inner{padding-bottom:clamp(5.5rem,9vw,7rem)}
+
+/* Designation strip becomes a row of feature boxes overlapping the hero */
+.band{position:relative;z-index:6;background:transparent;border:0;margin-top:calc(-1 * clamp(2.75rem,5vw,3.75rem))}
+.band .strata{display:none}
+.band-grid{padding-block:0;gap:0;box-shadow:var(--lift)}
+.band-grid>div{border:0;border-left:0;padding:1.6rem 1.5rem;background:var(--navy);color:#fff;transition:transform .35s var(--ease-out),background-color .3s;position:relative}
+.band-grid>div+div{border-left:0;padding-left:1.5rem}
+.band-grid>div:nth-child(even){background:var(--copper-deep)}
+.band-grid>div:hover{transform:translateY(-8px);z-index:2}
+.band-grid dt{color:rgba(255,255,255,.82);display:flex;align-items:center;gap:.5rem;margin-bottom:.55rem}
+.band-grid dd,.band-grid dd a{color:#fff}
+.band-grid dt .icon{width:1.35rem;height:1.35rem;color:#fff;flex:none}
+.band .mono,.band-grid dd a{font-weight:700}
+.band + .section{padding-top:clamp(4.5rem,8vw,6.5rem)}
+@media (max-width:64rem){.band-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.band-grid>div:nth-child(even){background:var(--copper-deep)}.band-grid>div:nth-child(3){background:var(--copper-deep)}.band-grid>div:nth-child(4){background:var(--navy)}}
+@media (max-width:36rem){.band-grid{grid-template-columns:minmax(0,1fr)}.band-grid>div:nth-child(n){background:var(--navy)}.band-grid>div:nth-child(even){background:var(--copper-deep)}}
+
+/* Service cards: navy panel sweeps up on hover, icon tile turns solid */
+.svc-card{overflow:hidden;z-index:0;border-radius:6px;border-color:var(--line);transition:transform .4s var(--ease-out),box-shadow .4s,border-color .3s}
+.svc-card::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--navy);transform:translateY(101%);transition:transform .5s var(--ease-out)}
+.svc-card::after{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.svc-card:hover,.svc-card:focus-visible{transform:translateY(-8px);box-shadow:var(--lift);border-color:var(--navy)}
+.svc-card:hover::before,.svc-card:focus-visible::before{transform:none}
+.svc-card:hover::after,.svc-card:focus-visible::after{transform:none}
+.svc-card b,.svc-card>span{transition:color .35s}
+.svc-card:hover b,.svc-card:focus-visible b{color:#fff}
+.svc-card:hover>span,.svc-card:focus-visible>span{color:rgba(255,255,255,.86)}
+.svc-card>.icon{border-radius:50%;width:3.4rem;height:3.4rem;padding:.9rem;transition:background .3s,color .3s,transform .5s var(--ease-out)}
+.svc-card:hover>.icon{transform:rotateY(360deg)}
+
+/* Process: circular icon badges joined by a line */
+.flow{counter-reset:none;position:relative}
+.flow li{border-top:0;padding-top:0;position:relative;text-align:center;justify-items:center;gap:.5rem}
+.flow li:first-child{border-top-color:transparent}
+.flow li>.icon{width:4rem;height:4rem;padding:1.05rem;box-sizing:border-box;border-radius:50%;background:var(--navy);color:#fff;margin:0 0 .6rem;position:relative;z-index:1;transition:background .3s,transform .4s var(--ease-out),box-shadow .3s}
+.flow li:first-child>.icon{background:var(--copper)}
+.flow li::before{content:"";display:block;position:absolute;top:2rem;left:calc(50% + 2.4rem);right:calc(-50% + 2.4rem - 1.25rem);height:2px;background:repeating-linear-gradient(90deg,var(--grey-light) 0 6px,transparent 6px 12px)}
+.flow li:last-child::before{display:none}
+.flow li:hover>.icon{background:var(--copper);transform:translateY(-6px) scale(1.06);box-shadow:0 12px 22px rgba(196,106,45,.35)}
+@media (max-width:64rem){.flow li::before{display:none}}
+
+/* Why GeoTesta: framed photo with offset block, stat tiles with a top accent */
+.why-photo{position:relative;isolation:isolate;margin-left:1.25rem}
+.why-photo::before{content:"";position:absolute;z-index:-1;left:-1.25rem;bottom:-1.25rem;width:62%;height:62%;background:var(--copper)}
+.why-photo::after{content:"";position:absolute;z-index:-1;right:-1rem;top:-1rem;width:34%;height:34%;border:3px solid var(--navy);border-left:0;border-bottom:0}
+.why-photo img{-webkit-mask-image:none;mask-image:none;border-radius:2px;box-shadow:var(--lift);transition:transform .8s var(--ease-out)}
+.why-photo{overflow:visible}
+.why-photo:hover img{transform:scale(1.02)}
+.why-copy .stats{gap:1.1rem}
+.stat{border:0;border-top:4px solid var(--copper);border-radius:2px;background:#fff;box-shadow:0 8px 22px rgba(10,42,67,.08);padding:1.25rem 1.25rem 1.1rem;transition:transform .35s var(--ease-out),box-shadow .35s,background-color .3s}
+.stat b{font-variant-numeric:tabular-nums}
+.stat:hover{transform:translateY(-6px);box-shadow:var(--lift)}
+
+/* Project bars grow when scrolled into view */
+.chart .c-bar{height:.6rem;border-radius:999px;background:var(--sky)}
+.tint .chart .c-bar{background:#fff}
+.chart .c-bar i{border-radius:999px;background:linear-gradient(90deg,var(--navy),var(--copper));transform-origin:left;transition:transform 1.2s var(--ease-out) calc(var(--i,0) * 90ms)}
+.chart.anim:not(.in) .c-bar i{transform:scaleX(0)}
+.c-num{font-variant-numeric:tabular-nums}
+
+/* Selected assignments: tiles with a sweeping copper edge and lift */
+.atiles a{position:relative;overflow:hidden;border-radius:4px;transition:transform .35s var(--ease-out),box-shadow .35s,background-color .3s}
+.atiles a::after{content:"";position:absolute;left:0;bottom:0;height:4px;width:100%;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.atiles a:hover,.atiles a:focus-visible{transform:translateY(-5px);box-shadow:var(--lift)}
+.atiles a:hover::after,.atiles a:focus-visible::after{transform:none}
+
+/* Insight cards */
+.post-cards li{background:#fff;position:relative;overflow:hidden;transition:transform .35s var(--ease-out),box-shadow .35s,border-color .3s}
+.post-cards li::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--copper);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease-out)}
+.post-cards li:hover{transform:translateY(-6px);box-shadow:var(--lift);border-color:var(--navy)}
+.post-cards li:hover::before{transform:none}
+
+/* Closing call to action: dark band with a raised form card */
+.cta{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;right:-8rem;top:-8rem;width:26rem;height:26rem;border-radius:50%;background:radial-gradient(circle,rgba(196,106,45,.28),transparent 68%);pointer-events:none}
+.cta .wrap{position:relative}
+.cta h2,.cta p,.cta .contact span{color:#fff}
+.cta .eyebrow{color:#fff}
+.cta a:not(.btn){color:#fff}
+.cta .btn-quiet{background:transparent;color:#fff;border:1.5px solid #fff}
+.cta .btn-quiet:hover{background:#fff;color:var(--navy)}
+.cta :focus-visible{outline-color:#fff}
+.cta-form{color:var(--fg);border:0;border-top:5px solid var(--copper);border-radius:3px;box-shadow:0 24px 50px rgba(0,0,0,.28);padding:1.75rem}
+.cta-form :focus-visible{outline-color:var(--copper)}
+.cta-form a:not(.btn){color:var(--copper-ink)}
+
+/* Inner page headers */
+.page-hero .page-head>*{animation:gtUp .8s var(--ease-out) both}
+.page-hero .page-head>*:nth-child(2){animation-delay:.12s}
+.page-hero .page-head>*:nth-child(3){animation-delay:.24s}
+.page-hero{border-bottom:5px solid var(--copper)}
+
+/* Footer */
+.site-footer{border-top:5px solid var(--copper)}
+.foot-grid a{display:inline-block;transition:transform .25s var(--ease-out),color .2s}
+.foot-grid a:hover{transform:translateX(4px)}
+
+/* Scroll reveal: stagger and directional variants */
+.reveal{transition:opacity .75s var(--ease-out),transform .75s var(--ease-out);transition-delay:calc(var(--d,0) * 90ms)}
+.reveal{transform:translateY(34px)}
+.why-copy.reveal,.cta-copy.reveal{transform:translateX(-36px)}
+.why-photo.reveal,.cta-form.reveal{transform:translateX(36px)}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-copy>*,.hero-ctrl,.page-hero .page-head>*{animation:none}
+  .hero .slide img,.svc-card,.svc-card::before,.svc-card::after,.svc-card>.icon,.band-grid>div,.stat,.atiles a,.atiles a::after,.post-cards li,.post-cards li::before,.flow li>.icon,.chart .c-bar i,.btn,.foot-grid a,.why-photo img{transition:none!important;transform:none!important}
+  .chart.anim:not(.in) .c-bar i{transform:none}
+  .svc-card:hover::before,.svc-card::before{transform:none;opacity:0}
+  .svc-card:hover::before{opacity:1}
+  .reveal{transition:none;transform:none;opacity:1}
+}
+.slide{overflow:hidden}
+.band .band-grid dd a,.band .band-grid dd a:hover{color:#fff!important}
+.cta-inner{align-items:center}
+.atiles a{border-bottom-width:0}
+.why-photo::after{right:0}
+.why-photo{margin-left:1.25rem;margin-right:0}
+@media (max-width:36rem){.band-grid>div{padding:1.15rem 1.25rem}}

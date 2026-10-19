@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReviewToggle from '@/components/ReviewToggle';
 import Behaviors from '@/components/Behaviors';
-import WhatsAppChat from '@/components/WhatsAppChat';
+import FloatingChat from '@/components/FloatingChat';
 import PageClass from '@/components/PageClass';
 
 export const metadata = {
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
           <main id="main">{children}</main>
           <Footer />
           <ReviewToggle />
-          <WhatsAppChat />
+          <FloatingChat />
           <Behaviors />
         </PageClass>
       </body>

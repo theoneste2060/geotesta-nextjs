@@ -19,18 +19,67 @@ function init(signal) {
   const $$ = (s, r = d) => Array.prototype.slice.call(r.querySelectorAll(s));
   const cleanups = [];
 
-  /* Subtle reveal on scroll (skipped when reduced motion is requested) */
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Sticky header depth: mark the page once it has scrolled */
+  const root = d.documentElement;
+  const onScroll = () => { if (window.scrollY > 8) root.setAttribute('data-scrolled', ''); else root.removeAttribute('data-scrolled'); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true, signal });
+  cleanups.push(() => root.removeAttribute('data-scrolled'));
+
+  /* Number counters: count up to the written value when scrolled into view.
+     The markup keeps the final text, so nothing changes without scripting. */
+  const counted = new WeakSet();
+  const countUp = (el) => {
+    if (counted.has(el)) return;
+    counted.add(el);
+    const m = /^(\d+)(\+?)$/.exec(el.textContent.trim());
+    if (!m) return;
+    const end = parseInt(m[1], 10);
+    if (end >= 1900 || end < 3) return;          /* skip years and tiny values */
+    const t0 = performance.now(), dur = 1400;
+    const tick = (t) => {
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = Math.round(end * e) + m[2];
+      if (k < 1) raf = requestAnimationFrame(tick);
+    };
+    let raf = requestAnimationFrame(tick);
+    cleanups.push(() => { cancelAnimationFrame(raf); el.textContent = m[1] + m[2]; });
+  };
+
+  /* Scroll reveal with stagger. Skipped when reduced motion is requested. */
+  if ('IntersectionObserver' in window && !reduce) {
     const io = new IntersectionObserver(
-      (es) => es.forEach((en) => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }),
+      (es) => es.forEach((en) => {
+        if (!en.isIntersecting) return;
+        const el = en.target;
+        el.classList.add('in');
+        $$('.stat b, .c-num', el).forEach(countUp);
+        io.unobserve(el);
+      }),
       { rootMargin: '0px 0px -8% 0px' }
     );
-    $$('main .block, main .section, main .card, main .pcard, main .tile, main .person').forEach((el) => {
-      if (!el.classList.contains('in') && el.getBoundingClientRect().top > window.innerHeight) {
-        el.classList.add('reveal');
-        io.observe(el);
+    const groups = ['.svc-grid > li', '.flow > li', '.band-grid > div', '.atiles > li', '.post-cards > li', '.stats > li', '.facts > div'];
+    const singles = ['main .block', 'main .card', 'main .pcard', 'main .tile', 'main .person', 'main .sec-head', '.why-copy', '.why-photo',
+      '.cta-copy', '.cta-form', '.chart', 'main .sub-h'];
+    const seen = new Set();
+    const watch = (el, delay) => {
+      if (seen.has(el)) return;
+      seen.add(el);
+      if (el.classList.contains('in') || el.getBoundingClientRect().top <= window.innerHeight) {
+        /* already on screen at load: run counters and bars straight away */
+        el.classList.add('anim', 'in');
+        $$('.stat b, .c-num', el).forEach(countUp);
+        return;
       }
-    });
+      el.classList.add('reveal', 'anim');
+      if (delay) el.style.setProperty('--d', delay);
+      io.observe(el);
+    };
+    groups.forEach((g) => $$('main ' + g + ', ' + g).forEach((el, i, all) => watch(el, i % (g.includes('flow') ? 6 : g.includes('stats') ? 2 : 4))));
+    singles.forEach((s) => $$(s).forEach((el) => watch(el, 0)));
+    $$('.chart .c-bar i').forEach((bar, i) => bar.style.setProperty('--i', i));
     cleanups.push(() => io.disconnect());
   }
 
