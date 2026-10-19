@@ -11,28 +11,8 @@ export const metadata = {
 export default function Page() {
   return (
     <>
-      <section className="hero slider" role="group" aria-roledescription="carousel" aria-label="GeoTesta work photos">
-        <div className="slider-viewport">
-          <div className="slides">
-            <figure className="slide" aria-roledescription="slide" aria-label="Photo 1 of 5">
-              <img src="/assets/hero-1-test-pit.jpg" width="990" height="742" alt="GeoTesta team at a test pit dug through a floor inside a building, two people in hard hats and high-visibility vests working a testing rod in the pit while a third looks on." fetchPriority="high" />
-            </figure>
-            <figure className="slide" aria-roledescription="slide" aria-label="Photo 2 of 5">
-              <img src="/assets/hero-2-drill-rig.jpg" width="990" height="742" alt="A blue drilling rig on a cleared, graded building site, with an excavator and a truck behind it and a worker standing beside the rig." loading="lazy" />
-            </figure>
-            <figure className="slide" aria-roledescription="slide" aria-label="Photo 3 of 5">
-              <img src="/assets/hero-3-wall.jpg" width="990" height="794" alt="Two people in high-visibility vests at the exterior wall of a building, one holding a metal cylindrical instrument against the plaster while the other holds papers and a pen." style={{objectPosition: "center top"}} loading="lazy" />
-            </figure>
-            <figure className="slide" aria-roledescription="slide" aria-label="Photo 4 of 5">
-              <img src="/assets/hero-4-ceiling.jpg" width="990" height="742" alt="A person in a hard hat and high-visibility vest on a stepladder, holding a yellow handheld device against a ceiling beam in a finished room." loading="lazy" />
-            </figure>
-            <figure className="slide" aria-roledescription="slide" aria-label="Photo 5 of 5">
-              <img src="/assets/hero-5-office.jpg" width="990" height="742" alt="An office with several desks, laptops, a desktop computer showing a table of data, a printer and stacks of papers." loading="lazy" />
-            </figure>
-          </div>
-        </div>
-        <div className="hero-shade" aria-hidden="true"></div>
-        <div className="wrap hero-inner">
+      <section className="hero hero-split slider" role="group" aria-roledescription="carousel" aria-label="GeoTesta work photos">
+        <div className="hero-left">
           <div className="hero-copy">
             <h1>
               Precision you can build on.
@@ -49,25 +29,64 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          <div className="hero-ctrl">
-            <button className="slider-btn prev" type="button" aria-label="Previous photo">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                <path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            <div className="dots">
-              <button className="dot" type="button" aria-label="Show photo 1 of 5" aria-current="true"></button>
-              <button className="dot" type="button" aria-label="Show photo 2 of 5"></button>
-              <button className="dot" type="button" aria-label="Show photo 3 of 5"></button>
-              <button className="dot" type="button" aria-label="Show photo 4 of 5"></button>
-              <button className="dot" type="button" aria-label="Show photo 5 of 5"></button>
-            </div>
-            <button className="slider-btn next" type="button" aria-label="Next photo">
-              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
-                <path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+          <ul className="hero-stats">
+            <li>
+              <b>500+</b>
+              <span>Project assignments</span>
+            </li>
+            <li>
+              <b>15+</b>
+              <span>Engineers, geologists and technicians</span>
+            </li>
+            <li>
+              <b>2018</b>
+              <span>Established</span>
+            </li>
+          </ul>
+        </div>
+        <div className="hero-photo">
+          <div className="slider-viewport">
+        <div className="slides">
+            <figure className="slide" aria-roledescription="slide" aria-label="Photo 1 of 5">
+              <img src="/assets/hero-1-test-pit.jpg" width="990" height="742" alt="GeoTesta team at a test pit dug through a floor inside a building, two people in hard hats and high-visibility vests working a testing rod in the pit while a third looks on." fetchPriority="high" />
+            </figure>
+            <figure className="slide" aria-roledescription="slide" aria-label="Photo 2 of 5">
+              <img src="/assets/hero-2-drill-rig.jpg" width="990" height="742" alt="A blue drilling rig on a cleared, graded building site, with an excavator and a truck behind it and a worker standing beside the rig." loading="lazy" />
+            </figure>
+            <figure className="slide" aria-roledescription="slide" aria-label="Photo 3 of 5">
+              <img src="/assets/hero-3-wall.jpg" width="990" height="794" alt="Two people in high-visibility vests at the exterior wall of a building, one holding a metal cylindrical instrument against the plaster while the other holds papers and a pen." style={{objectPosition: "center top"}} loading="lazy" />
+            </figure>
+            <figure className="slide" aria-roledescription="slide" aria-label="Photo 4 of 5">
+              <img src="/assets/hero-4-ceiling.jpg" width="990" height="742" alt="A person in a hard hat and high-visibility vest on a stepladder, holding a yellow handheld device against a ceiling beam in a finished room." loading="lazy" />
+            </figure>
+            <figure className="slide" aria-roledescription="slide" aria-label="Photo 5 of 5">
+              <img src="/assets/hero-5-office.jpg" width="990" height="742" alt="An office with several desks, laptops, a desktop computer showing a table of data, a printer and stacks of papers." loading="lazy" />
+            </figure>
+        </div>
           </div>
+          <div className="hero-badge">
+            <b>RSB</b>
+            <span>Designated testing laboratory, ISO/IEC 17025. Certificate 001/RSB/LDS/COD/2026-2027.</span>
+          </div>
+        <div className="hero-ctrl">
+          <button className="slider-btn prev" type="button" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <div className="dots">
+            <button className="dot" type="button" aria-label="Show photo 1 of 5" aria-current="true"></button>
+            <button className="dot" type="button" aria-label="Show photo 2 of 5"></button>
+            <button className="dot" type="button" aria-label="Show photo 3 of 5"></button>
+            <button className="dot" type="button" aria-label="Show photo 4 of 5"></button>
+            <button className="dot" type="button" aria-label="Show photo 5 of 5"></button>
+          </div>
+          <button className="slider-btn next" type="button" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+              <path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        </div>
         </div>
         <p className="sr-only slider-status" aria-live="polite">
           Photo 1 of 5

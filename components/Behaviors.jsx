@@ -83,7 +83,9 @@ function init(signal) {
     cleanups.push(() => io.disconnect());
   }
 
-  /* Hero slideshow: no autoplay */
+  /* Hero slideshow: advances every 20 seconds. Pauses on hover and keyboard focus,
+     when the tab is hidden, after the pause button is used, and never autoplays
+     when reduced motion is requested. */
   const slider = $('.slider');
   if (slider) {
     const track = $('.slides', slider), slides = $$('.slide', slider), dots = $$('.dot', slider),
@@ -112,6 +114,41 @@ function init(signal) {
     });
     on(slider, 'pointercancel', () => { x0 = null; });
     show(0, false);
+
+    const INTERVAL = 20000;
+    let timer = null, userPaused = false, hovering = false, focusing = false;
+    const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+    const canRun = () => !userPaused && !hovering && !focusing && !d.hidden;
+    const start = () => { stop(); if (canRun()) timer = setInterval(() => show(cur + 1, false), INTERVAL); };
+    const ctrl = $('.hero-ctrl', slider);
+    let toggle = null;
+    const paint = () => {
+      if (!toggle) return;
+      toggle.setAttribute('aria-label', userPaused ? 'Play slideshow' : 'Pause slideshow');
+      toggle.innerHTML = userPaused
+        ? '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>'
+        : '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"/></svg>';
+    };
+    if (!reduce && n > 1) {
+      if (ctrl) {
+        toggle = d.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'slider-btn slider-toggle';
+        ctrl.appendChild(toggle);
+        paint();
+        on(toggle, 'click', () => { userPaused = !userPaused; paint(); start(); });
+        cleanups.push(() => toggle.remove());
+      }
+      on(slider, 'pointerenter', () => { hovering = true; stop(); });
+      on(slider, 'pointerleave', () => { hovering = false; start(); });
+      on(slider, 'focusin', () => { focusing = true; stop(); });
+      on(slider, 'focusout', () => { focusing = false; start(); });
+      on(d, 'visibilitychange', start);
+      /* any manual change restarts the 20 second count */
+      ['click', 'keydown', 'pointerup'].forEach((t) => on(slider, t, () => { if (timer) start(); }));
+      start();
+      cleanups.push(stop);
+    }
     const eager = () => $$('img[loading="lazy"]', slider).forEach((im) => { im.loading = 'eager'; });
     if (d.readyState === 'complete') eager(); else on(window, 'load', eager);
   }
@@ -272,6 +309,16 @@ export default function Behaviors() {
   useEffect(() => {
     document.documentElement.classList.add('js');
   }, []);
+
+  /* Every page change starts at the very top, unless the link points at a #section */
+  useEffect(() => {
+    if (window.location.hash) return;
+    const html = document.documentElement;
+    html.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+    html.style.scrollBehavior = '';
+  }, [pathname]);
 
   useEffect(() => {
     const ac = new AbortController();
