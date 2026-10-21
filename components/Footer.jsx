@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import NewsForm from '@/components/NewsForm';
+import SocialIcon from '@/components/SocialIcon';
 
 export default function Footer() {
   return (
@@ -107,16 +108,31 @@ export default function Footer() {
                 </span>
               </span>
             </address>
-            <p className="follow">
-              {"Follow: Facebook, X (@geotesta1), LinkedIn, Instagram, YouTube, "}
-              <a href="https://wa.me/250788354909" target="_blank" rel="noopener">
-                WhatsApp
-              </a>
-              {" "}
-              <span className="tbc">
-                [Social links to be supplied]
-              </span>
-            </p>
+            <div className="follow">
+              <p className="follow-h">Follow us</p>
+              <ul className="social-row">
+                <li>
+                  <a href="https://www.instagram.com/geotesta_rw" target="_blank" rel="noopener" aria-label="GeoTesta on Instagram">
+                    <SocialIcon name="instagram" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://x.com/geotesta1" target="_blank" rel="noopener" aria-label="GeoTesta on X">
+                    <SocialIcon name="x" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/company/geotesta-rwanda/" target="_blank" rel="noopener" aria-label="GeoTesta on LinkedIn">
+                    <SocialIcon name="linkedin" />
+                  </a>
+                </li>
+                <li>
+                  <a href="https://wa.me/250788354909" target="_blank" rel="noopener" aria-label="GeoTesta on WhatsApp">
+                    <SocialIcon name="whatsapp" />
+                  </a>
+                </li>
+              </ul>
+            </div>
             <figure className="foot-qr">
               <img src="/assets/qr-geotesta.svg" width="104" height="104" alt="QR code that opens the GeoTesta website, www.geotesta.rw" loading="lazy" />
               <figcaption>

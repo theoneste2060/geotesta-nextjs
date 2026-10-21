@@ -149,9 +149,6 @@ export default function Page() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <p className="eyebrow">
-                What we do
-              </p>
               <h2 id="svc-h">
                 From ground investigation to engineering decisions.
               </h2>
@@ -256,9 +253,6 @@ export default function Page() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <p className="eyebrow">
-                How we work
-              </p>
               <h2 id="how-h">
                 One disciplined process, from question to report.
               </h2>
@@ -330,9 +324,6 @@ export default function Page() {
       <section className="section why" id="why">
         <div className="wrap why-grid">
           <div className="why-copy">
-            <p className="eyebrow">
-              Why GeoTesta
-            </p>
             <h2>
               Evidence you can rely on.
             </h2>
@@ -428,9 +419,6 @@ export default function Page() {
       </section>
       <section className="section tint" id="recent-projects">
         <div className="wrap">
-          <p className="eyebrow">
-            Projects
-          </p>
           <h2>
             Breadth across Rwanda's built environment
           </h2>
@@ -603,9 +591,6 @@ export default function Page() {
         <div className="wrap">
           <div className="sec-head">
             <div>
-              <p className="eyebrow">
-                Insights
-              </p>
               <h2>
                 From the engineering blog
               </h2>

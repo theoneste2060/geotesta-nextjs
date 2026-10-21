@@ -86,9 +86,6 @@ export default function Page() {
           Open item: The register comes from the appendix of the company profile, with obvious typos corrected. Confirm that GeoTesta may name each client and project publicly. Gallery captions describe what each photo shows. They do not name projects, so add the project and date for each photo, and confirm the people shown agree to their use. 'Sky Base Tower' in the sitemap is probably the 'Sky Plaza building' in the register (Kacyiru, 2026): confirm the name. The Gahanga structural audit in the sitemap is not in the register. Airtel Headquarters appears under Selected assignments but not in the register: add its client and year.
         </p>
         <section className="block" id="sectors">
-          <p className="eyebrow">
-            Sectors
-          </p>
           <h2>
             Breadth across Rwanda's built environment
           </h2>
@@ -186,9 +183,6 @@ export default function Page() {
           </div>
         </section>
         <section className="block" id="featured">
-          <p className="eyebrow">
-            Case studies
-          </p>
           <h2>
             Selected assignments
           </h2>
@@ -256,9 +250,6 @@ export default function Page() {
           </ul>
         </section>
         <section className="block" id="themes">
-          <p className="eyebrow">
-            Themes
-          </p>
           <div className="duo">
             <div className="panel">
               <h2>
@@ -279,9 +270,6 @@ export default function Page() {
           </div>
         </section>
         <section className="block" id="register">
-          <p className="eyebrow">
-            Full record
-          </p>
           <h2>
             Project register
           </h2>
@@ -1314,9 +1302,6 @@ export default function Page() {
           <nav className="pager" id="reg-pager" aria-label="Project register pages" hidden></nav>
         </section>
         <section className="block" id="gallery">
-          <p className="eyebrow">
-            Field and lab
-          </p>
           <h2>
             Project gallery
           </h2>
@@ -1459,11 +1444,6 @@ export default function Page() {
               </button>
             </div>
           </dialog>
-          <p>
-            <span className="tbc">
-              [Link to the full gallery]
-            </span>
-          </p>
         </section>
       </div>
       <section className="section cta" id="tell-us">

@@ -51,9 +51,6 @@ export default function Page() {
         <section className="block" id="all-services">
           <div className="sec-head">
             <div>
-              <p className="eyebrow">
-                Our services
-              </p>
               <h2>
                 Choose by what you need to know.
               </h2>
@@ -151,9 +148,6 @@ export default function Page() {
           </ul>
         </section>
         <section className="block" id="how-it-works">
-          <p className="eyebrow">
-            How we work
-          </p>
           <h2>
             How every engagement runs
           </h2>

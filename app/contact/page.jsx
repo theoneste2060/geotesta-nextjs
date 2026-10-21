@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Icon from '@/components/Icon';
+import SocialIcon from '@/components/SocialIcon';
 
 export const metadata = {
   title: { absolute: "Contact | GeoTesta" },
@@ -327,12 +328,26 @@ export default function Page() {
           <h2>
             Social
           </h2>
-          <p>
-            {"Facebook, X (@geotesta1), LinkedIn, Instagram, YouTube. "}
-            <span className="tbc">
-              [Links to the social channels]
-            </span>
-          </p>
+          <ul className="social-list">
+            <li>
+              <a className="social-link" href="https://www.instagram.com/geotesta_rw" target="_blank" rel="noopener">
+                <SocialIcon name="instagram" />
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a className="social-link" href="https://x.com/geotesta1" target="_blank" rel="noopener">
+                <SocialIcon name="x" />
+                <span>X (@geotesta1)</span>
+              </a>
+            </li>
+            <li>
+              <a className="social-link" href="https://www.linkedin.com/company/geotesta-rwanda/" target="_blank" rel="noopener">
+                <SocialIcon name="linkedin" />
+                <span>LinkedIn</span>
+              </a>
+            </li>
+          </ul>
         </section>
       </div>
     </>

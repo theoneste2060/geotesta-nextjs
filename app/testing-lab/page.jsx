@@ -82,9 +82,6 @@ export default function Page() {
       </nav>
       <div className="wrap">
         <section className="block" id="what-we-do">
-          <p className="eyebrow">
-            Overview
-          </p>
           <h2>
             What the laboratory does
           </h2>
@@ -123,9 +120,6 @@ export default function Page() {
           </div>
         </section>
         <section className="block" id="designation">
-          <p className="eyebrow">
-            Credentials
-          </p>
           <h2>
             Designation
           </h2>
@@ -202,9 +196,6 @@ export default function Page() {
           </p>
         </section>
         <section className="block" id="catalogue">
-          <p className="eyebrow">
-            Scope
-          </p>
           <h2>
             Test catalogue
           </h2>
@@ -501,9 +492,6 @@ export default function Page() {
           </div>
         </section>
         <section className="block" id="submit-samples">
-          <p className="eyebrow">
-            Samples
-          </p>
           <h2>
             How to submit samples
           </h2>
@@ -565,9 +553,6 @@ export default function Page() {
         </section>
         <div className="duo">
           <section className="block panel" id="reporting">
-            <p className="eyebrow">
-              Deliverables
-            </p>
             <h2>
               What you receive
             </h2>
@@ -581,9 +566,6 @@ export default function Page() {
             </p>
           </section>
           <section className="block panel" id="equipment">
-            <p className="eyebrow">
-              Facilities
-            </p>
             <h2>
               Equipment
             </h2>

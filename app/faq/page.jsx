@@ -49,9 +49,6 @@ export default function Page() {
         </p>
         <div className="editorial-layout">
           <nav aria-label="FAQ topics" className="section-index">
-            <p className="eyebrow">
-              Questions by topic
-            </p>
             <a href="#testing-questions">
               Testing and project decisions
             </a>

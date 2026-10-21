@@ -55,9 +55,6 @@ export default function Page() {
         <section className="block" id="people">
           <div className="sec-head">
             <div>
-              <p className="eyebrow">
-                Our people
-              </p>
               <h2>
                 Engineering, quality and laboratory
               </h2>

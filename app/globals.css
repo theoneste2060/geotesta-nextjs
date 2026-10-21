@@ -1386,3 +1386,27 @@ main .news-note{color:var(--muted);max-width:44ch}
 .info-bar a:focus-visible{outline:2px solid #fff;outline-offset:2px}
 @media (max-width:64rem){.ib-hours,.ib-phone2,.ib-sep{display:none}.info-bar-in{justify-content:space-between}}
 @media (max-width:40rem){.ib-addr{display:none}.info-bar-in{justify-content:center;gap:.3rem 1.25rem}}
+
+/* Social icons */
+.social-icon{width:1.25rem;height:1.25rem;flex:none}
+.follow{margin:1.25rem 0 0}
+.follow-h{margin:0 0 .6rem;font-size:.8rem;font-weight:700;color:rgba(255,255,255,.85)}
+.social-row{list-style:none;margin:0;padding:0;display:flex;gap:.6rem}
+.site-footer .social-row a{display:inline-grid;place-items:center;width:2.5rem;height:2.5rem;border:1.5px solid rgba(255,255,255,.55);border-radius:50%;color:#fff;transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease-out)}
+.site-footer .social-row a:hover{background:var(--copper-deep);border-color:var(--copper-deep);color:#fff;transform:translateY(-3px)}
+.social-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.75rem}
+.social-link{display:inline-flex;align-items:center;gap:.55rem;min-height:44px;padding:.5rem 1rem;border:1.5px solid var(--navy);border-radius:999px;color:var(--navy)!important;font-weight:600;transition:background .25s,color .25s,transform .3s var(--ease-out)}
+.social-link:hover{background:var(--navy);color:#fff!important;transform:translateY(-2px)}
+.site-footer .social-row,.foot-grid .social-row{display:flex;flex-direction:row;flex-wrap:wrap;gap:.6rem}
+.site-footer .social-row li{margin:0;padding:0}
+
+/* Project gallery: even, evenly cropped tiles. Partial rows centre. */
+.gallery{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;margin:1.25rem 0 1rem;grid-auto-rows:auto}
+.gallery li,.gallery .tall,.gallery .wide{flex:0 0 calc((100% - 2.25rem) / 4);aspect-ratio:4/3;grid-row:auto;grid-column:auto;border-radius:8px;background:var(--sky);box-shadow:0 4px 14px rgba(10,42,67,.1)}
+.gallery li[hidden]{display:none}
+.gallery .g-item{border:0;border-radius:0;box-shadow:none}
+.gallery img{border-radius:0;object-position:center 40%}
+.gallery .tall img{object-position:center 22%}
+.gallery .g-cap{padding:1.6rem .8rem .6rem;font-size:.78rem}
+@media (max-width:64rem){.gallery li,.gallery .tall,.gallery .wide{flex-basis:calc((100% - 1.5rem) / 3)}}
+@media (max-width:40rem){.gallery{gap:.5rem}.gallery li,.gallery .tall,.gallery .wide{flex-basis:calc((100% - .5rem) / 2)}.gallery .g-cap{font-size:.72rem;padding:1.2rem .6rem .45rem}}

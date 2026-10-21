@@ -71,9 +71,6 @@ export default function Page() {
         </div>
         <aside className="svc-aside" aria-label="Next steps">
           <div className="aside-box">
-            <p className="eyebrow">
-              Start a project
-            </p>
             <h2 className="aside-h">
               Need mining geotechnics?
             </h2>
@@ -88,9 +85,6 @@ export default function Page() {
             </a>
           </div>
           <div className="aside-box">
-            <p className="eyebrow">
-              Other services
-            </p>
             <ul className="aside-list">
               <li>
                 <Link href="/service-site-investigation">
@@ -133,9 +127,6 @@ export default function Page() {
       </div>
       <div className="wrap">
         <section className="block" id="featured">
-          <p className="eyebrow">
-            Proof
-          </p>
           <h2>
             Featured projects
           </h2>

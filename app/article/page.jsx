@@ -77,9 +77,6 @@ export default function Page() {
           </article>
           <aside aria-label="Related" className="svc-aside">
             <div className="aside-box">
-              <p className="eyebrow">
-                Need this on your site?
-              </p>
               <p className="aside-h">
                 Talk to an engineer
               </p>

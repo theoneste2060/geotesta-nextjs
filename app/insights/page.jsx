@@ -38,9 +38,6 @@ export default function Page() {
       </section>
       <div className="wrap">
         <section className="block" id="latest">
-          <p className="eyebrow">
-            Engineering blog
-          </p>
           <h2>
             Latest posts
           </h2>

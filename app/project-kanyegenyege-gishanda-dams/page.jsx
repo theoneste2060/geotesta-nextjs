@@ -81,9 +81,6 @@ export default function Page() {
           </div>
           <aside className="case-aside">
             <section className="case-facts" id="summary">
-              <p className="eyebrow">
-                Project summary
-              </p>
               <dl className="facts">
                 <div>
                   <dt>

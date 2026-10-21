@@ -36,9 +36,6 @@ export default function Page() {
       </section>
       <div className="wrap editorial-layout legal-layout">
         <nav aria-label="Legal sections" className="section-index">
-          <p className="eyebrow">
-            Legal and site information
-          </p>
           <a href="#disclaimer">
             Disclaimer
           </a>
